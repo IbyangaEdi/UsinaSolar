@@ -99,7 +99,7 @@ body {
 .card { background: var(--surface); border-radius: 14px; box-shadow: var(--shadow); }
 .kpi { padding: 16px; display: flex; flex-direction: column; gap: 6px; }
 .kpi-label { font-size: 12px; color: var(--ink-3); font-weight: 600; }
-.kpi-value { font-size: 24px; font-weight: 700; }
+.kpi-value { font-size: 24px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .kpi-value .unit { font-size: 13px; font-weight: 500; color: var(--ink-3); margin-left: 3px; }
 
 .section-title { font-size: 15px; font-weight: 700; }
@@ -158,7 +158,7 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
     </div>
     <div>
       <span class="pill pill-neutral">Fora do horário de geração</span>
-      <div class="updated mono">Atualizado 05/08/2026 01:04</div>
+      <div class="updated mono">Atualizado 05/08/2026 01:08</div>
     </div>
   </div>
 
@@ -177,7 +177,7 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
     </div>
     <div class="card kpi">
       <div class="kpi-label">Total histórico</div>
-      <div class="kpi-value mono">16.010,8<span class="unit">kWh</span></div>
+      <div class="kpi-value mono">16,0k<span class="unit">kWh</span></div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Receita hoje</div>
@@ -185,7 +185,7 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
     </div>
     <div class="card kpi">
       <div class="kpi-label">Receita total</div>
-      <div class="kpi-value mono">R$ 17.611,88</div>
+      <div class="kpi-value mono">R$ 17,6k</div>
     </div>
   </div>
 
