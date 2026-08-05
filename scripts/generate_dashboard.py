@@ -452,7 +452,7 @@ const curveData = __CURVE_JSON__;
 const dailyData = __DAILY_JSON__;
 const GH_REPO = '__GH_REPO_SLUG__';
 const GH_WORKFLOW = '__GH_WORKFLOW_FILE__';
-const GH_TOKEN = '__GH_DISPATCH_TOKEN__';
+const GH_TOKEN = atob('__GH_DISPATCH_TOKEN_B64__');
 
 function cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -709,7 +709,7 @@ def main():
         "__DAILY_JSON__": json.dumps(daily, ensure_ascii=False),
         "__GH_REPO_SLUG__": GITHUB_REPO_SLUG,
         "__GH_WORKFLOW_FILE__": GITHUB_WORKFLOW_FILE,
-        "__GH_DISPATCH_TOKEN__": creds["GH_DISPATCH_TOKEN"],
+        "__GH_DISPATCH_TOKEN_B64__": base64.b64encode(creds["GH_DISPATCH_TOKEN"].encode()).decode(),
     }
     for k, v in replacements.items():
         html = html.replace(k, str(v))
