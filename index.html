@@ -28,7 +28,8 @@
   --warning-soft: #FBEAD2;
   --critical: #DC2626;
   --critical-soft: #FBE1E1;
-  --shadow: 0 1px 2px rgba(16, 24, 38, 0.04), 0 8px 24px -12px rgba(16, 24, 38, 0.12);
+  --shadow: 0 2px 8px rgba(16, 24, 38, 0.05), 0 20px 40px -22px rgba(16, 24, 38, 0.16);
+  --shadow-sm: 0 1px 4px rgba(16, 24, 38, 0.07);
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -49,7 +50,8 @@
     --warning-soft: #33260B;
     --critical: #F87171;
     --critical-soft: #331414;
-    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.55);
+    --shadow: 0 2px 8px rgba(0,0,0,0.28), 0 22px 44px -22px rgba(0,0,0,0.6);
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.3);
   }
 }
 :root[data-theme="dark"] {
@@ -57,14 +59,16 @@
   --ink-2: #B7C2D0; --ink-3: #7C8A9C; --border: #223049; --accent: #5B9BFF;
   --accent-soft: #17253F; --gold: #F3BE63; --gold-soft: #2B2312; --good: #34D399;
   --good-soft: #113228; --warning: #FBBF24; --warning-soft: #33260B; --critical: #F87171;
-  --critical-soft: #331414; --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.55);
+  --critical-soft: #331414; --shadow: 0 2px 8px rgba(0,0,0,0.28), 0 22px 44px -22px rgba(0,0,0,0.6);
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.3);
 }
 :root[data-theme="light"] {
   --bg: #F5F7FA; --surface: #FFFFFF; --surface-2: #EEF2F7; --ink: #101826;
   --ink-2: #4B5768; --ink-3: #8592A3; --border: #E2E6EC; --accent: #2F6FE0;
   --accent-soft: #E4ECFC; --gold: #E7A93E; --gold-soft: #FBEDD2; --good: #1E9E74;
   --good-soft: #DDF3EA; --warning: #D97706; --warning-soft: #FBEAD2; --critical: #DC2626;
-  --critical-soft: #FBE1E1; --shadow: 0 1px 2px rgba(16,24,38,0.04), 0 8px 24px -12px rgba(16,24,38,0.12);
+  --critical-soft: #FBE1E1; --shadow: 0 2px 8px rgba(16, 24, 38, 0.05), 0 20px 40px -22px rgba(16, 24, 38, 0.16);
+  --shadow-sm: 0 1px 4px rgba(16, 24, 38, 0.07);
 }
 * { box-sizing: border-box; }
 body {
@@ -92,7 +96,7 @@ body {
 .pill-neutral { background: var(--surface-2); color: var(--ink-2); }
 
 .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); }
+.card { background: var(--surface); border-radius: 14px; box-shadow: var(--shadow); }
 .kpi { padding: 16px; display: flex; flex-direction: column; gap: 6px; }
 .kpi-label { font-size: 12px; color: var(--ink-3); font-weight: 600; }
 .kpi-value { font-size: 24px; font-weight: 700; }
@@ -122,7 +126,7 @@ svg.chart { width: 100%; height: auto; display: block; overflow: visible; }
 .info-row span:last-child { font-weight: 600; }
 
 .inverter-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
-.inverter-card { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); }
+.inverter-card { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; background: var(--surface-2); box-shadow: var(--shadow-sm); }
 .inverter-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 .inverter-dot.good { background: var(--good); box-shadow: 0 0 0 3px var(--good-soft); }
 .inverter-dot.critical { background: var(--critical); box-shadow: 0 0 0 3px var(--critical-soft); }
@@ -154,7 +158,7 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
     </div>
     <div>
       <span class="pill pill-neutral">Fora do horário de geração</span>
-      <div class="updated mono">Atualizado 05/08/2026 00:57</div>
+      <div class="updated mono">Atualizado 05/08/2026 01:00</div>
     </div>
   </div>
 
