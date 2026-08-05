@@ -154,38 +154,38 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
     <div>
       <div class="eyebrow">Painel &middot; GoodWe SEMS</div>
       <div class="plant-name">Usina Solar</div>
-      <div class="plant-meta">Mal. Deodoro - AL, Brasil &middot; 10.0 kWp instalados</div>
+      <div class="plant-meta">Mal. Deodoro - AL, Brasil &middot; 10,0 kWp instalados</div>
     </div>
     <div>
       <span class="pill pill-neutral">Fora do horário de geração</span>
-      <div class="updated mono">Atualizado 05/08/2026 01:00</div>
+      <div class="updated mono">Atualizado 05/08/2026 01:04</div>
     </div>
   </div>
 
   <div class="kpi-grid">
     <div class="card kpi">
       <div class="kpi-label">Potência agora</div>
-      <div class="kpi-value mono">0.00<span class="unit">kW</span></div>
+      <div class="kpi-value mono">0,00<span class="unit">kW</span></div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Gerado hoje</div>
-      <div class="kpi-value mono">0.0<span class="unit">kWh</span></div>
+      <div class="kpi-value mono">0,0<span class="unit">kWh</span></div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Este mês</div>
-      <div class="kpi-value mono">66.1<span class="unit">kWh</span></div>
+      <div class="kpi-value mono">66,1<span class="unit">kWh</span></div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Total histórico</div>
-      <div class="kpi-value mono">16010.8<span class="unit">kWh</span></div>
+      <div class="kpi-value mono">16.010,8<span class="unit">kWh</span></div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Receita hoje</div>
-      <div class="kpi-value mono">R$ 0.00</div>
+      <div class="kpi-value mono">R$ 0,00</div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Receita total</div>
-      <div class="kpi-value mono">R$ 17611.88</div>
+      <div class="kpi-value mono">R$ 17.611,88</div>
     </div>
   </div>
 
@@ -204,7 +204,7 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
   <div class="card" style="padding: 18px;">
     <div class="section-title" style="margin-bottom: 2px;">Microinversores</div>
     <div class="section-sub" style="margin-bottom: 12px;">Status individual de cada unidade</div>
-    <div class="inverter-grid"><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 01(6)</div><div class="inverter-metric mono">0.00 kW agora · 0.0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 02 (6)</div><div class="inverter-metric mono">0.00 kW agora · 0.0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 03 (6)</div><div class="inverter-metric mono">0.00 kW agora · 0.0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 04 (24)</div><div class="inverter-metric mono">0.00 kW agora · 0.0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 05 (24)</div><div class="inverter-metric mono">0.00 kW agora · 0.0 kWh hoje</div></div></div></div>
+    <div class="inverter-grid"><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 01(6)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 02 (6)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 03 (6)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 04 (24)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 05 (24)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div></div>
   </div>
 
   <div class="two-col">
@@ -247,6 +247,10 @@ const dailyData = [{"date": "2026-08-05", "kwh": 0.0}];
 
 function cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+function fmtBR(n, decimals) {
+  return n.toLocaleString('pt-BR', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 }
 
 function drawAreaChart(containerId, tooltipId, data, opts) {
@@ -307,7 +311,7 @@ function drawAreaChart(containerId, tooltipId, data, opts) {
     const py = (y(d.kw) / height) * rect.height;
     newTooltip.style.left = px + 'px';
     newTooltip.style.top = py + 'px';
-    newTooltip.textContent = `${d.t} — ${d.kw.toFixed(2)} kW`;
+    newTooltip.textContent = `${d.t} — ${fmtBR(d.kw, 2)} kW`;
     newTooltip.classList.add('show');
   });
   hit.addEventListener('mouseleave', () => newTooltip.classList.remove('show'));
@@ -362,7 +366,7 @@ function drawBarChart(containerId, tooltipId, data) {
       const bbox = rect.getBBox();
       newTooltip.style.left = ((bbox.x + bbox.width / 2) / width) * svgRect.width + 'px';
       newTooltip.style.top = (bbox.y / height) * svgRect.height + 'px';
-      newTooltip.textContent = `${d.date} — ${d.kwh.toFixed(2)} kWh`;
+      newTooltip.textContent = `${d.date} — ${fmtBR(d.kwh, 2)} kWh`;
       newTooltip.classList.add('show');
     });
     rect.addEventListener('mouseleave', () => newTooltip.classList.remove('show'));
