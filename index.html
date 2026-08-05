@@ -106,9 +106,10 @@ body {
   border-radius: 999px; padding: 7px 16px; cursor: pointer;
   transition: background 0.15s ease;
 }
-.refresh-btn:hover { background: #178363; }
-.refresh-btn:active { background: #13744F; }
+.refresh-btn:hover:not(:disabled) { background: #178363; }
+.refresh-btn:active:not(:disabled) { background: #13744F; }
 .refresh-btn:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+.refresh-btn:disabled { opacity: 0.7; cursor: default; }
 
 .pill { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; }
 .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
@@ -180,8 +181,8 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
     </div>
     <div class="status-block">
       <span id="statusPill" class="pill pill-neutral">Fora do horário de geração</span>
-      <div class="updated mono">Atualizado 05/08/2026 01:24</div>
-      <button id="refreshBtn" class="refresh-btn" onclick="location.href = location.pathname + '?t=' + Date.now()">Atualizar agora</button>
+      <div class="updated mono">Atualizado 05/08/2026 02:13</div>
+      <button id="refreshBtn" class="refresh-btn">Atualizar agora</button>
     </div>
   </div>
 
@@ -261,12 +262,15 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
     <div class="events" id="eventsList"><div class="empty-state">Nenhum evento registrado ainda — bom sinal.</div></div>
   </div>
 
-  <footer>Painel gerado automaticamente a partir do SEMS Portal (GoodWe) &middot; monitor local em ~/.goodwe-monitor</footer>
+  <footer>Painel atualizado automaticamente via GitHub Actions &middot; dados do SEMS Portal (GoodWe)</footer>
 </div>
 
 <script>
 const curveData = [];
 const dailyData = [{"date": "2026-08-05", "kwh": 0.0}];
+const GH_REPO = 'IbyangaEdi/UsinaSolar';
+const GH_WORKFLOW = 'monitor.yml';
+const GH_TOKEN = atob('Z2l0aHViX3BhdF8xMUNKU1VCS1EwVDMxYUtHRUpQbXYzX0t0bFVwRW9nMnJ3MGhJTHdCQnJMb0VscmVZR3p5ZGRhaGF2Qm1xVm0yU1VHWUtTREdGUXdmdHdFbGxY');
 
 function cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -406,4 +410,26 @@ function matchRefreshBtnWidth() {
 }
 matchRefreshBtnWidth();
 window.addEventListener('resize', matchRefreshBtnWidth);
+
+const refreshBtn = document.getElementById('refreshBtn');
+refreshBtn.addEventListener('click', async () => {
+  refreshBtn.disabled = true;
+  refreshBtn.textContent = 'Atualizando…';
+  try {
+    await fetch(`https://api.github.com/repos/${GH_REPO}/actions/workflows/${GH_WORKFLOW}/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GH_TOKEN}`,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+      body: JSON.stringify({ ref: 'main' }),
+    });
+  } catch (e) {
+    // segue para o reload mesmo assim; se falhar, os dados so ficam desatualizados
+  }
+  setTimeout(() => {
+    location.href = location.pathname + '?t=' + Date.now();
+  }, 45000);
+});
 </script>
