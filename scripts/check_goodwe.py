@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-Monitora a usina GoodWe via SEMS Portal e alerta por e-mail quando a
-geracao fica zerada durante o horario em que deveria estar gerando.
-Verifica tanto a usina como um todo quanto cada microinversor
-individualmente, ja que a usina pode continuar gerando (total > 0)
-mesmo com uma ou mais unidades paradas.
+Monitora a usina GoodWe via SEMS Portal e alerta por e-mail quando um
+microinversor fica parado (ou volta a funcionar) durante o horario em
+que deveria estar gerando. Ao final do dia (disparo de cron dedicado),
+envia tambem um relatorio de fechamento com o resumo do dia.
 
 Versao para rodar em CI (GitHub Actions): le credenciais de variaveis
 de ambiente e usa caminhos relativos ao repositorio (data/).
 
 Uso: python3 scripts/check_goodwe.py
-Saida (stdout, ultima linha): OK | ALERT | RECOVERED | ERROR
+Saida (stdout, ultima linha): OK | ALERT | RECOVERED | REPORT | ERROR
 """
+import csv
 import json
 import os
 import re
@@ -62,7 +62,7 @@ def load_state():
         with open(STATE_PATH) as f:
             state = json.load(f)
     else:
-        state = {"consecutive_zero": 0, "alert_active": False}
+        state = {}
     state.setdefault("inverters", {})
     return state
 
@@ -162,6 +162,67 @@ def in_daylight_window(now):
     return DAYLIGHT_START_HOUR <= now.hour < DAYLIGHT_END_HOUR
 
 
+def read_today_history(today_str):
+    if not os.path.exists(HISTORY_PATH):
+        return []
+    rows = []
+    with open(HISTORY_PATH) as f:
+        for row in csv.DictReader(f):
+            if row["timestamp"].startswith(today_str):
+                rows.append(row)
+    return rows
+
+
+def read_today_events(today_str):
+    if not os.path.exists(LOG_PATH):
+        return []
+    pattern = re.compile(r"^(\S+) EVENT (ALERT|RECOVERED) (.*)$")
+    events = []
+    with open(LOG_PATH) as f:
+        for line in f:
+            if not line.startswith(today_str):
+                continue
+            m = pattern.match(line.strip())
+            if m:
+                events.append({"time": m.group(1), "type": m.group(2), "detail": m.group(3)})
+    return events
+
+
+def build_daily_report(name, now, today_str):
+    rows = read_today_history(today_str)
+    events = read_today_events(today_str)
+
+    if rows:
+        eday_final = max(parse_number(r["eday_kwh"]) for r in rows)
+        peak_row = max(rows, key=lambda r: parse_number(r["pac_kw"]))
+        peak_pac = parse_number(peak_row["pac_kw"])
+        peak_time = peak_row["timestamp"][11:16]
+    else:
+        eday_final = 0.0
+        peak_pac = 0.0
+        peak_time = "-"
+
+    lines = [
+        f"Relatorio de fechamento - {name}",
+        f"Data: {now.strftime('%d/%m/%Y')}",
+        "",
+        f"Geracao total do dia: {eday_final:.1f} kWh",
+        f"Pico de potencia: {peak_pac:.2f} kW as {peak_time}",
+        "",
+    ]
+    if events:
+        lines.append(f"Eventos do dia ({len(events)}):")
+        for ev in events:
+            title = "parou de gerar" if ev["type"] == "ALERT" else "voltou a gerar"
+            lines.append(f"- {ev['time'][11:16]} {title}: {ev['detail']}")
+    else:
+        lines.append("Nenhum evento de falha registrado hoje - tudo funcionou normalmente.")
+    lines.append("")
+
+    subject = f"[GoodWe] Fechamento do dia - {name} - {now.strftime('%d/%m/%Y')}"
+    return subject, "\n".join(lines)
+
+
 def record_history(now, station):
     new_file = not os.path.exists(HISTORY_PATH)
     os.makedirs(os.path.dirname(HISTORY_PATH), exist_ok=True)
@@ -198,39 +259,9 @@ def main():
 
     emails = []
 
-    # --- usina como um todo ---
-    if not daylight:
-        state["consecutive_zero"] = 0
-    elif pac <= 0.0:
-        state["consecutive_zero"] = state.get("consecutive_zero", 0) + 1
-    else:
-        state["consecutive_zero"] = 0
-        if state.get("alert_active", False):
-            state["alert_active"] = False
-            log(f"EVENT RECOVERED pac={pac}kW")
-            emails.append((
-                f"[GoodWe] {name} voltou a gerar",
-                f"A usina '{name}' voltou a gerar energia.\n"
-                f"Potencia atual: {pac} kW\n"
-                f"Horario: {now.strftime('%d/%m/%Y %H:%M')}\n",
-            ))
-
-    if daylight and state.get("consecutive_zero", 0) >= ZERO_THRESHOLD and not state.get("alert_active"):
-        state["alert_active"] = True
-        log(f"EVENT ALERT pac={pac}kW consecutive_zero={state['consecutive_zero']}")
-        emails.append((
-            f"[ALERTA] {name} parou de gerar energia",
-            f"A usina '{name}' esta com geracao zerada durante o horario "
-            f"em que deveria estar produzindo energia.\n\n"
-            f"Potencia atual: {pac} kW\n"
-            f"Checagens consecutivas zeradas: {state['consecutive_zero']}\n"
-            f"Horario: {now.strftime('%d/%m/%Y %H:%M')}\n\n"
-            f"Verifique o inversor e o SEMS Portal.",
-        ))
-
     # --- cada microinversor individualmente ---
     # a usina pode continuar gerando (pac > 0) mesmo com uma ou mais
-    # unidades paradas, entao isso precisa de checagem separada.
+    # unidades paradas, entao o alerta e sempre por unidade, nao pelo total.
     inv_state = state["inverters"]
     newly_down, newly_recovered = [], []
     for inv in get_inverters(detail):
@@ -244,13 +275,13 @@ def main():
             if s["consecutive_zero"] >= ZERO_THRESHOLD and not s.get("alert_active"):
                 s["alert_active"] = True
                 newly_down.append(inv["name"])
-                log(f"EVENT INVERTER_ALERT {inv['name']} sn={inv['sn']}")
+                log(f"EVENT ALERT microinversor={inv['name']} sn={inv['sn']}")
         else:
             s["consecutive_zero"] = 0
             if s.get("alert_active"):
                 s["alert_active"] = False
                 newly_recovered.append(inv["name"])
-                log(f"EVENT INVERTER_RECOVERED {inv['name']} sn={inv['sn']}")
+                log(f"EVENT RECOVERED microinversor={inv['name']} sn={inv['sn']}")
 
     if newly_down:
         emails.append((
@@ -269,6 +300,14 @@ def main():
             + f"\n\nHorario: {now.strftime('%d/%m/%Y %H:%M')}\n",
         ))
 
+    # --- relatorio de fechamento do dia ---
+    # disparado apenas pelo cron dedicado (30 22 * * * UTC = 19:30 BR),
+    # identificado pelo workflow via IS_DAILY_REPORT.
+    is_daily_report = os.environ.get("IS_DAILY_REPORT") == "true"
+    if is_daily_report:
+        today_str = now.date().isoformat()
+        emails.append(build_daily_report(name, now, today_str))
+
     save_state(state)
 
     status = "OK"
@@ -277,7 +316,10 @@ def main():
             send_email(creds, subject, body)
         except Exception as e:
             log(f"ERROR sending email ({subject}): {e}")
-        status = "ALERT" if "ALERTA" in subject else status
+        if "ALERTA" in subject:
+            status = "ALERT"
+        elif "Fechamento" in subject and status == "OK":
+            status = "REPORT"
     print(status)
 
 
