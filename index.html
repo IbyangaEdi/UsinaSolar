@@ -180,8 +180,8 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
       <div class="plant-meta">Mal. Deodoro - AL, Brasil &middot; 10,0 kWp instalados</div>
     </div>
     <div class="status-block">
-      <span id="statusPill" class="pill pill-neutral">Fora do horário de geração</span>
-      <div class="updated mono">Atualizado 07/08/2026 02:08</div>
+      <span id="statusPill" class="pill pill-good">Gerando normalmente</span>
+      <div class="updated mono">Atualizado 07/08/2026 08:34</div>
       <button id="refreshBtn" class="refresh-btn">Atualizar agora</button>
     </div>
   </div>
@@ -189,15 +189,15 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
   <div class="kpi-grid">
     <div class="card kpi">
       <div class="kpi-label">Potência agora</div>
-      <div class="kpi-value mono">0,00<span class="unit">kW</span></div>
+      <div class="kpi-value mono">2,0k<span class="unit">kW</span></div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Gerado hoje</div>
-      <div class="kpi-value mono">0,0<span class="unit">kWh</span></div>
+      <div class="kpi-value mono">6,8<span class="unit">kWh</span></div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Este mês</div>
-      <div class="kpi-value mono">125,8<span class="unit">kWh</span></div>
+      <div class="kpi-value mono">132,6<span class="unit">kWh</span></div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Total histórico</div>
@@ -205,7 +205,7 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
     </div>
     <div class="card kpi">
       <div class="kpi-label">Receita hoje</div>
-      <div class="kpi-value mono">R$ 0,00</div>
+      <div class="kpi-value mono">R$ 7,48</div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Receita total</div>
@@ -228,7 +228,7 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
   <div class="card" style="padding: 18px;">
     <div class="section-title" style="margin-bottom: 2px;">Microinversores</div>
     <div class="section-sub" style="margin-bottom: 12px;">Status individual de cada unidade</div>
-    <div class="inverter-grid"><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 01(6)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 02 (6)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 03 (6)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 04 (24)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 05 (24)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div></div>
+    <div class="inverter-grid"><div class="inverter-card"><div class="inverter-dot good"></div><div class="inverter-info"><div class="inverter-name">Micro 01(6)</div><div class="inverter-metric mono">0,41 kW agora · 1,5 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot good"></div><div class="inverter-info"><div class="inverter-name">Micro 02 (6)</div><div class="inverter-metric mono">0,41 kW agora · 1,2 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot good"></div><div class="inverter-info"><div class="inverter-name">Micro 03 (6)</div><div class="inverter-metric mono">0,43 kW agora · 1,6 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot good"></div><div class="inverter-info"><div class="inverter-name">Micro 04 (24)</div><div class="inverter-metric mono">0,34 kW agora · 0,9 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot good"></div><div class="inverter-info"><div class="inverter-name">Micro 05 (24)</div><div class="inverter-metric mono">0,40 kW agora · 1,6 kWh hoje</div></div></div></div>
   </div>
 
   <div class="two-col">
@@ -266,8 +266,8 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
 </div>
 
 <script>
-const curveData = [];
-const dailyData = [{"date": "2026-08-05", "kwh": 20.5}, {"date": "2026-08-06", "kwh": 39.2}, {"date": "2026-08-07", "kwh": 0.0}];
+const curveData = [{"t": "00:00", "kw": 0.0}, {"t": "00:05", "kw": 0.0}, {"t": "00:10", "kw": 0.0}, {"t": "00:15", "kw": 0.0}, {"t": "00:20", "kw": 0.0}, {"t": "00:25", "kw": 0.0}, {"t": "00:30", "kw": 0.0}, {"t": "00:35", "kw": 0.0}, {"t": "00:40", "kw": 0.0}, {"t": "00:45", "kw": 0.0}, {"t": "00:50", "kw": 0.0}, {"t": "00:55", "kw": 0.0}, {"t": "01:00", "kw": 0.0}, {"t": "01:05", "kw": 0.0}, {"t": "01:10", "kw": 0.0}, {"t": "01:15", "kw": 0.0}, {"t": "01:20", "kw": 0.0}, {"t": "01:25", "kw": 0.0}, {"t": "01:30", "kw": 0.0}, {"t": "01:35", "kw": 0.0}, {"t": "01:40", "kw": 0.0}, {"t": "01:45", "kw": 0.0}, {"t": "01:50", "kw": 0.0}, {"t": "01:55", "kw": 0.0}, {"t": "02:00", "kw": 0.0}, {"t": "02:05", "kw": 0.0}, {"t": "02:10", "kw": 0.0}, {"t": "02:15", "kw": 0.0}, {"t": "02:20", "kw": 0.0}, {"t": "02:25", "kw": 0.0}, {"t": "02:30", "kw": 0.0}, {"t": "02:35", "kw": 0.0}, {"t": "02:40", "kw": 0.0}, {"t": "02:45", "kw": 0.0}, {"t": "02:50", "kw": 0.0}, {"t": "02:55", "kw": 0.0}, {"t": "03:00", "kw": 0.0}, {"t": "03:05", "kw": 0.0}, {"t": "03:10", "kw": 0.0}, {"t": "03:15", "kw": 0.0}, {"t": "03:20", "kw": 0.0}, {"t": "03:25", "kw": 0.0}, {"t": "03:30", "kw": 0.0}, {"t": "03:35", "kw": 0.0}, {"t": "03:40", "kw": 0.0}, {"t": "03:45", "kw": 0.0}, {"t": "03:50", "kw": 0.0}, {"t": "03:55", "kw": 0.0}, {"t": "04:00", "kw": 0.0}, {"t": "04:05", "kw": 0.0}, {"t": "04:10", "kw": 0.0}, {"t": "04:15", "kw": 0.0}, {"t": "04:20", "kw": 0.0}, {"t": "04:25", "kw": 0.0}, {"t": "04:30", "kw": 0.0}, {"t": "04:35", "kw": 0.0}, {"t": "04:40", "kw": 0.0}, {"t": "04:45", "kw": 0.0}, {"t": "04:50", "kw": 0.0}, {"t": "04:55", "kw": 0.0}, {"t": "05:00", "kw": 0.0}, {"t": "05:05", "kw": 0.0}, {"t": "05:10", "kw": 0.0}, {"t": "05:15", "kw": 0.0}, {"t": "05:20", "kw": 0.0}, {"t": "05:25", "kw": 0.0}, {"t": "05:30", "kw": 0.009}, {"t": "05:35", "kw": 0.009}, {"t": "05:40", "kw": 0.014}, {"t": "05:45", "kw": 0.035}, {"t": "05:50", "kw": 0.106}, {"t": "05:55", "kw": 0.16}, {"t": "06:00", "kw": 0.335}, {"t": "06:05", "kw": 0.42}, {"t": "06:10", "kw": 0.508}, {"t": "06:15", "kw": 0.618}, {"t": "06:20", "kw": 0.795}, {"t": "06:25", "kw": 1.027}, {"t": "06:30", "kw": 1.172}, {"t": "06:35", "kw": 1.312}, {"t": "06:40", "kw": 1.491}, {"t": "06:45", "kw": 1.789}, {"t": "06:50", "kw": 2.037}, {"t": "06:55", "kw": 2.21}, {"t": "07:00", "kw": 2.378}, {"t": "07:05", "kw": 2.554}, {"t": "07:10", "kw": 2.78}, {"t": "07:15", "kw": 3.15}, {"t": "07:20", "kw": 3.398}, {"t": "07:25", "kw": 3.615}, {"t": "07:30", "kw": 3.821}, {"t": "07:35", "kw": 4.028}, {"t": "07:40", "kw": 4.232}, {"t": "07:45", "kw": 1.813}, {"t": "07:50", "kw": 4.313}, {"t": "07:55", "kw": 2.354}, {"t": "08:00", "kw": 6.219}, {"t": "08:05", "kw": 6.112}, {"t": "08:10", "kw": 4.236}, {"t": "08:15", "kw": 2.206}, {"t": "08:20", "kw": 6.781}, {"t": "08:25", "kw": 7.193}, {"t": "08:30", "kw": 2.469}];
+const dailyData = [{"date": "2026-08-05", "kwh": 20.5}, {"date": "2026-08-06", "kwh": 39.2}, {"date": "2026-08-07", "kwh": 6.8}];
 const GH_REPO = 'IbyangaEdi/UsinaSolar';
 const GH_WORKFLOW = 'monitor.yml';
 const GH_TOKEN = atob('Z2l0aHViX3BhdF8xMUNKU1VCS1EwSEdGSDZZeXdTbmcwXzhkeDcxR0FUUEdsUUFHdmJSb1REZDk0SUlDU1paOXN4cW10c0JWODJCa3dFUElPTUxLWE5HdzRBMjlB');
