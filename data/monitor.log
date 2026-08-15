@@ -84,3 +84,4 @@
 2026-08-15T16:43:50-03:00 pac=529.0kW status=1 daylight=True
 2026-08-15T17:00:32-03:00 pac=284.0kW status=1 daylight=False
 2026-08-15T17:51:45-03:00 pac=16.0kW status=1 daylight=False
+2026-08-15T18:41:37-03:00 pac=0.0kW status=-1 daylight=False
