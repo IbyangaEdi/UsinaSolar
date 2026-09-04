@@ -333,3 +333,4 @@
 2026-09-04T10:05:54-03:00 pac=5424.0kW status=-1 daylight=True
 2026-09-04T13:51:41-03:00 pac=5492.0kW status=-1 daylight=True
 2026-09-04T13:51:41-03:00 EVENT RECOVERED microinversor=Micro 05 (24) sn=52000MIA255W0105
+2026-09-04T16:15:40-03:00 pac=1022.0kW status=-1 daylight=True
