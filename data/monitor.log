@@ -426,3 +426,5 @@
 2026-09-19T21:14:59-03:00 pac=0.0kW status=-1 daylight=False
 2026-09-19T21:24:08-03:00 pac=0.0kW status=-1 daylight=False
 2026-09-20T10:24:50-03:00 pac=0.0kW status=-1 daylight=True
+2026-09-20T13:54:57-03:00 pac=0.0kW status=-1 daylight=True
+2026-09-20T13:54:57-03:00 EVENT ALERT microinversor=Micro 05 (24) sn=52000MIA255W0105
