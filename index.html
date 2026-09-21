@@ -180,8 +180,8 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
       <div class="plant-meta">Mal. Deodoro - AL, Brasil &middot; 10,0 kWp instalados</div>
     </div>
     <div class="status-block">
-      <span id="statusPill" class="pill pill-neutral">Fora do horário de geração</span>
-      <div class="updated mono">Atualizado 20/09/2026 21:24</div>
+      <span id="statusPill" class="pill pill-critical">Sem geração no horário esperado</span>
+      <div class="updated mono">Atualizado 21/09/2026 12:36</div>
       <button id="refreshBtn" class="refresh-btn">Atualizar agora</button>
     </div>
   </div>
@@ -228,7 +228,7 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
   <div class="card" style="padding: 18px;">
     <div class="section-title" style="margin-bottom: 2px;">Microinversores</div>
     <div class="section-sub" style="margin-bottom: 12px;">Status individual de cada unidade</div>
-    <div class="inverter-grid"><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 01(6)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 02 (6)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 03 (6)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 04 (24)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot neutral"></div><div class="inverter-info"><div class="inverter-name">Micro 05 (24)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div></div>
+    <div class="inverter-grid"><div class="inverter-card"><div class="inverter-dot critical"></div><div class="inverter-info"><div class="inverter-name">Micro 01(6)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot critical"></div><div class="inverter-info"><div class="inverter-name">Micro 02 (6)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot critical"></div><div class="inverter-info"><div class="inverter-name">Micro 03 (6)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot critical"></div><div class="inverter-info"><div class="inverter-name">Micro 04 (24)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div><div class="inverter-card"><div class="inverter-dot critical"></div><div class="inverter-info"><div class="inverter-name">Micro 05 (24)</div><div class="inverter-metric mono">0,00 kW agora · 0,0 kWh hoje</div></div></div></div>
   </div>
 
   <div class="two-col">
@@ -247,11 +247,11 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
     <div class="card" style="padding: 18px;">
       <div class="section-title" style="margin-bottom: 10px;">Condições agora</div>
       <div class="info-list">
-        <div class="info-row"><span>Clima</span><span>Clear</span></div>
-        <div class="info-row"><span>Temperatura</span><span>25 &deg;C</span></div>
-        <div class="info-row"><span>Umidade</span><span>80%</span></div>
-        <div class="info-row"><span>Nebulosidade</span><span>26%</span></div>
-        <div class="info-row"><span>Vento</span><span>ESE 17 km/h</span></div>
+        <div class="info-row"><span>Clima</span><span>Partly Cloudy</span></div>
+        <div class="info-row"><span>Temperatura</span><span>24 &deg;C</span></div>
+        <div class="info-row"><span>Umidade</span><span>85%</span></div>
+        <div class="info-row"><span>Nebulosidade</span><span>70%</span></div>
+        <div class="info-row"><span>Vento</span><span>SE 11 km/h</span></div>
       </div>
     </div>
   </div>
@@ -267,7 +267,7 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
 
 <script>
 const curveData = [];
-const dailyData = [{"date": "2026-09-06", "kwh": 45.9}, {"date": "2026-09-07", "kwh": 52.1}, {"date": "2026-09-08", "kwh": 52.9}, {"date": "2026-09-09", "kwh": 44.3}, {"date": "2026-09-10", "kwh": 54.7}, {"date": "2026-09-11", "kwh": 49.0}, {"date": "2026-09-12", "kwh": 52.3}, {"date": "2026-09-13", "kwh": 55.2}, {"date": "2026-09-14", "kwh": 53.7}, {"date": "2026-09-15", "kwh": 50.8}, {"date": "2026-09-16", "kwh": 45.3}, {"date": "2026-09-17", "kwh": 11.5}, {"date": "2026-09-18", "kwh": 10.7}, {"date": "2026-09-19", "kwh": 10.5}, {"date": "2026-09-20", "kwh": 0.0}];
+const dailyData = [{"date": "2026-09-07", "kwh": 52.1}, {"date": "2026-09-08", "kwh": 52.9}, {"date": "2026-09-09", "kwh": 44.3}, {"date": "2026-09-10", "kwh": 54.7}, {"date": "2026-09-11", "kwh": 49.0}, {"date": "2026-09-12", "kwh": 52.3}, {"date": "2026-09-13", "kwh": 55.2}, {"date": "2026-09-14", "kwh": 53.7}, {"date": "2026-09-15", "kwh": 50.8}, {"date": "2026-09-16", "kwh": 45.3}, {"date": "2026-09-17", "kwh": 11.5}, {"date": "2026-09-18", "kwh": 10.7}, {"date": "2026-09-19", "kwh": 10.5}, {"date": "2026-09-20", "kwh": 0.0}, {"date": "2026-09-21", "kwh": 0.0}];
 const GH_REPO = 'IbyangaEdi/UsinaSolar';
 const GH_WORKFLOW = 'monitor.yml';
 const GH_TOKEN = atob('Z2l0aHViX3BhdF8xMUNKU1VCS1EwSEdGSDZZeXdTbmcwXzhkeDcxR0FUUEdsUUFHdmJSb1REZDk0SUlDU1paOXN4cW10c0JWODJCa3dFUElPTUxLWE5HdzRBMjlB');
