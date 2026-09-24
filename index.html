@@ -180,8 +180,8 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
       <div class="plant-meta">Mal. Deodoro - AL, Brasil &middot; 10,0 kWp instalados</div>
     </div>
     <div class="status-block">
-      <span id="statusPill" class="pill pill-neutral">Fora do horário de geração</span>
-      <div class="updated mono">Atualizado 23/09/2026 21:42</div>
+      <span id="statusPill" class="pill pill-good">Gerando normalmente</span>
+      <div class="updated mono">Atualizado 24/09/2026 10:58</div>
       <button id="refreshBtn" class="refresh-btn">Atualizar agora</button>
     </div>
   </div>
@@ -189,15 +189,15 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
   <div class="kpi-grid">
     <div class="card kpi">
       <div class="kpi-label">Potência agora</div>
-      <div class="kpi-value mono">0,00<span class="unit">kW</span></div>
+      <div class="kpi-value mono">1,9k<span class="unit">kW</span></div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Gerado hoje</div>
-      <div class="kpi-value mono">14,1<span class="unit">kWh</span></div>
+      <div class="kpi-value mono">6,3<span class="unit">kWh</span></div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Este mês</div>
-      <div class="kpi-value mono">790,8<span class="unit">kWh</span></div>
+      <div class="kpi-value mono">797,1<span class="unit">kWh</span></div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Total histórico</div>
@@ -205,7 +205,7 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
     </div>
     <div class="card kpi">
       <div class="kpi-label">Receita hoje</div>
-      <div class="kpi-value mono">R$ 15,51</div>
+      <div class="kpi-value mono">R$ 6,93</div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Receita total</div>
@@ -249,9 +249,9 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
       <div class="info-list">
         <div class="info-row"><span>Clima</span><span>Clear</span></div>
         <div class="info-row"><span>Temperatura</span><span>24 &deg;C</span></div>
-        <div class="info-row"><span>Umidade</span><span>83%</span></div>
-        <div class="info-row"><span>Nebulosidade</span><span>18%</span></div>
-        <div class="info-row"><span>Vento</span><span>E 12 km/h</span></div>
+        <div class="info-row"><span>Umidade</span><span>81%</span></div>
+        <div class="info-row"><span>Nebulosidade</span><span>17%</span></div>
+        <div class="info-row"><span>Vento</span><span>ENE 14 km/h</span></div>
       </div>
     </div>
   </div>
@@ -267,7 +267,7 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
 
 <script>
 const curveData = [];
-const dailyData = [{"date": "2026-09-09", "kwh": 44.3}, {"date": "2026-09-10", "kwh": 54.7}, {"date": "2026-09-11", "kwh": 49.0}, {"date": "2026-09-12", "kwh": 52.3}, {"date": "2026-09-13", "kwh": 55.2}, {"date": "2026-09-14", "kwh": 53.7}, {"date": "2026-09-15", "kwh": 50.8}, {"date": "2026-09-16", "kwh": 45.3}, {"date": "2026-09-17", "kwh": 11.5}, {"date": "2026-09-18", "kwh": 10.7}, {"date": "2026-09-19", "kwh": 10.5}, {"date": "2026-09-20", "kwh": 0.0}, {"date": "2026-09-21", "kwh": 0.0}, {"date": "2026-09-22", "kwh": 11.0}, {"date": "2026-09-23", "kwh": 14.1}];
+const dailyData = [{"date": "2026-09-10", "kwh": 54.7}, {"date": "2026-09-11", "kwh": 49.0}, {"date": "2026-09-12", "kwh": 52.3}, {"date": "2026-09-13", "kwh": 55.2}, {"date": "2026-09-14", "kwh": 53.7}, {"date": "2026-09-15", "kwh": 50.8}, {"date": "2026-09-16", "kwh": 45.3}, {"date": "2026-09-17", "kwh": 11.5}, {"date": "2026-09-18", "kwh": 10.7}, {"date": "2026-09-19", "kwh": 10.5}, {"date": "2026-09-20", "kwh": 0.0}, {"date": "2026-09-21", "kwh": 0.0}, {"date": "2026-09-22", "kwh": 11.0}, {"date": "2026-09-23", "kwh": 14.1}, {"date": "2026-09-24", "kwh": 6.3}];
 const GH_REPO = 'IbyangaEdi/UsinaSolar';
 const GH_WORKFLOW = 'monitor.yml';
 const GH_TOKEN = atob('Z2l0aHViX3BhdF8xMUNKU1VCS1EwSEdGSDZZeXdTbmcwXzhkeDcxR0FUUEdsUUFHdmJSb1REZDk0SUlDU1paOXN4cW10c0JWODJCa3dFUElPTUxLWE5HdzRBMjlB');
