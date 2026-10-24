@@ -589,3 +589,4 @@
 2026-10-24T13:34:23-03:00 pac=150.0kW status=1 daylight=True
 2026-10-24T16:00:05-03:00 pac=123.0kW status=1 daylight=True
 2026-10-24T18:25:15-03:00 pac=0.0kW status=-1 daylight=False
+2026-10-24T20:30:25-03:00 pac=0.0kW status=-1 daylight=False
