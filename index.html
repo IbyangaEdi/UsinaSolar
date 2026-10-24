@@ -180,8 +180,8 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
       <div class="plant-meta">Mal. Deodoro - AL, Brasil &middot; 10,0 kWp instalados</div>
     </div>
     <div class="status-block">
-      <span id="statusPill" class="pill pill-neutral">Fora do horário de geração</span>
-      <div class="updated mono">Atualizado 23/10/2026 21:55</div>
+      <span id="statusPill" class="pill pill-good">Gerando normalmente</span>
+      <div class="updated mono">Atualizado 24/10/2026 10:03</div>
       <button id="refreshBtn" class="refresh-btn">Atualizar agora</button>
     </div>
   </div>
@@ -189,11 +189,11 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
   <div class="kpi-grid">
     <div class="card kpi">
       <div class="kpi-label">Potência agora</div>
-      <div class="kpi-value mono">0,00<span class="unit">kW</span></div>
+      <div class="kpi-value mono">150,00<span class="unit">kW</span></div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Gerado hoje</div>
-      <div class="kpi-value mono">1,6<span class="unit">kWh</span></div>
+      <div class="kpi-value mono">0,6<span class="unit">kWh</span></div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Este mês</div>
@@ -205,7 +205,7 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
     </div>
     <div class="card kpi">
       <div class="kpi-label">Receita hoje</div>
-      <div class="kpi-value mono">R$ 1,76</div>
+      <div class="kpi-value mono">R$ 0,66</div>
     </div>
     <div class="card kpi">
       <div class="kpi-label">Receita total</div>
@@ -247,11 +247,11 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
     <div class="card" style="padding: 18px;">
       <div class="section-title" style="margin-bottom: 10px;">Condições agora</div>
       <div class="info-list">
-        <div class="info-row"><span>Clima</span><span>Shower Rain</span></div>
+        <div class="info-row"><span>Clima</span><span>Clear</span></div>
         <div class="info-row"><span>Temperatura</span><span>25 &deg;C</span></div>
-        <div class="info-row"><span>Umidade</span><span>89%</span></div>
-        <div class="info-row"><span>Nebulosidade</span><span>85%</span></div>
-        <div class="info-row"><span>Vento</span><span>E 15 km/h</span></div>
+        <div class="info-row"><span>Umidade</span><span>84%</span></div>
+        <div class="info-row"><span>Nebulosidade</span><span>25%</span></div>
+        <div class="info-row"><span>Vento</span><span>ENE 18 km/h</span></div>
       </div>
     </div>
   </div>
@@ -267,7 +267,7 @@ footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 
 
 <script>
 const curveData = [];
-const dailyData = [{"date": "2026-10-09", "kwh": 42.6}, {"date": "2026-10-10", "kwh": 70.6}, {"date": "2026-10-11", "kwh": 67.6}, {"date": "2026-10-12", "kwh": 67.3}, {"date": "2026-10-13", "kwh": 69.7}, {"date": "2026-10-14", "kwh": 72.8}, {"date": "2026-10-15", "kwh": 68.5}, {"date": "2026-10-16", "kwh": 68.4}, {"date": "2026-10-17", "kwh": 64.0}, {"date": "2026-10-18", "kwh": 69.9}, {"date": "2026-10-19", "kwh": 65.7}, {"date": "2026-10-20", "kwh": 70.6}, {"date": "2026-10-21", "kwh": 9.3}, {"date": "2026-10-22", "kwh": 1.6}, {"date": "2026-10-23", "kwh": 1.6}];
+const dailyData = [{"date": "2026-10-10", "kwh": 70.6}, {"date": "2026-10-11", "kwh": 67.6}, {"date": "2026-10-12", "kwh": 67.3}, {"date": "2026-10-13", "kwh": 69.7}, {"date": "2026-10-14", "kwh": 72.8}, {"date": "2026-10-15", "kwh": 68.5}, {"date": "2026-10-16", "kwh": 68.4}, {"date": "2026-10-17", "kwh": 64.0}, {"date": "2026-10-18", "kwh": 69.9}, {"date": "2026-10-19", "kwh": 65.7}, {"date": "2026-10-20", "kwh": 70.6}, {"date": "2026-10-21", "kwh": 9.3}, {"date": "2026-10-22", "kwh": 1.6}, {"date": "2026-10-23", "kwh": 1.6}, {"date": "2026-10-24", "kwh": 0.6}];
 const GH_REPO = 'IbyangaEdi/UsinaSolar';
 const GH_WORKFLOW = 'monitor.yml';
 const GH_TOKEN = atob('Z2l0aHViX3BhdF8xMUNKU1VCS1EwSEdGSDZZeXdTbmcwXzhkeDcxR0FUUEdsUUFHdmJSb1REZDk0SUlDU1paOXN4cW10c0JWODJCa3dFUElPTUxLWE5HdzRBMjlB');
